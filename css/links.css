@@ -1,0 +1,77 @@
+/* 整体容器样式 */
+.page.links-page {
+    display: flex;
+    height: 80vh;
+}
+
+/* 左边面板样式 */
+.links-page .left-panel {
+    flex: 0.5;
+    border-right: 1px solid var(--color-accent);
+    padding: 40px;
+}
+
+/* 左边面板中 iframe 的样式 */
+.links-page .left-panel iframe {
+    border: none;
+}
+
+/* 右边面板样式 */
+.links-page .right-panel {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+/* 链接列表样式 */
+.links-page #link-list {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+}
+
+
+.links-page .link-item {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    padding: 10px;
+    transition: background-color 0.3s;
+    background-color: var(--color-bg-card);
+}
+
+.links-page #site-info {
+    margin-bottom: 20px;
+}
+
+.links-page #favicon {
+    width: 100px;
+    height: 75px;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+.links-page #site-name {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.links-page #site-link {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 10px;
+    color: var(--color-accent);
+}
+
+
+.links-page #web-display {
+  transform: scale(0.333);
+  transform-origin: 0 0;
+  width: 300%;
+  height: 200%;
+}

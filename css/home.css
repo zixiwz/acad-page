@@ -1,0 +1,139 @@
+.header {
+	display: flex;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	text-align: left;
+}
+
+.avatar {
+	width: 150px;
+	height: 200px;
+	border-radius: 3%;
+	border: 0px solid var(--color-text-primary);
+	transition: border-color 0.3s;
+	object-fit: cover;
+	object-position: center;
+}
+
+.info h1 {
+	font-size: 2.5em;
+	margin-bottom: 10px;
+}
+
+.info p {
+	font-size: 1.1em;
+	color: var(--color-text-secondary);
+	line-height: 1.4;
+	margin-bottom: 6px;
+}
+
+.contact-links {
+	margin: 10px 0;
+	display: flex;
+    flex-wrap: wrap;
+	gap: 30px;
+}
+
+.contact-links a {
+	display: inline-flex; 
+	align-items: center;
+	text-decoration: none;
+	color: var(--color-accent);
+	transition: color 0.3s;
+}
+
+.contact-links a:hover {
+	filter: brightness(0.8);
+}
+
+.section h2 {
+	border-bottom: 2px solid var(--color-accent);
+	padding-bottom: 10px;
+	margin-bottom: 15px;
+	margin-top: 20px;
+}
+
+.education-list li {
+    margin-left: 30px;
+    padding: 0.2rem;
+}
+
+.education-list li h3{
+    margin-bottom: 3px;
+}
+
+.education-list li p{
+    margin-bottom: 3px;
+}
+
+.paper-list {
+	list-style-type: none;
+}
+
+.paper-list li {
+	background-color: var(--color-bg-card);
+	padding: 20px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px var(--color-shadow);
+	transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.paper-list li h3 {
+	color: var(--color-text-primary);
+	margin-bottom: 8px;
+}
+
+@media (max-width: 768px) {
+	.header {
+		flex-direction: column;
+		text-align: center;
+        align-items: center;
+	}
+	.avatar {
+		margin-bottom: 20px;
+	}
+}
+
+@media (min-width: 769px) and (max-width: 1199px) {
+    .avatar {
+        margin-right: 40px;
+	}
+}
+
+@media (min-width: 1200px) {
+    .page {
+        display: flex;
+    }
+
+    .contact-links {
+        flex-direction: column;
+		gap: 10px;
+    }
+
+    .header {
+		flex-direction: column;
+	}
+	.avatar {
+        margin-bottom: 20px;
+	}
+
+    .left-column {
+        flex: 0.5;
+        width: 100px;
+    }
+
+    .main-content {
+        flex: 1.5;
+		width: auto;
+        padding-left: 40px;
+    }
+
+	.section h2 {
+		margin-top: 10px;
+	}
+
+	.contact-links i {
+		width: 23px;
+	}
+}

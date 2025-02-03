@@ -1,0 +1,76 @@
+/* 全局基本样式 */
+body {
+	font-family: "Arial", "Helvetica Neue", Helvetica, sans-serif;
+}
+
+/* 页面容器 */
+.publications-page .container {
+	margin: 0 auto;
+	width: 100%;
+	padding: 0 30px;
+}
+
+/* 标题样式 */
+.publications-page h4 {
+	font-size: 1.5rem;
+	color: var(--color-title);
+	border-bottom: 2px solid var(--color-accent);
+	padding-bottom: 0.5rem;
+	margin: 1rem 0 0.5rem;
+	font-weight: 600;
+}
+
+/* 有序列表样式 */
+.publications-page ol {
+	list-style: none;
+	counter-reset: publication-counter;
+	padding-left: 0;
+}
+
+.publications-page ol li {
+	counter-increment: publication-counter;
+	padding: 0.5rem;
+	border-radius: 8px;
+	display: flex;
+	align-items: flex-start;
+	transition: transform 0.2s;
+}
+
+.publications-page ol li::before {
+	content: counter(publication-counter) ". ";
+	font-weight: bold;
+	color: var(--color-accent);
+	margin-right: 0.5rem;
+}
+
+.publications-page ol li:active {
+	transform: translateX(-3px);
+}
+
+.publications-page ol li p {
+	display: inline-blocke;
+}
+
+/* 强调文本 */
+.publications-page strong {
+	font-weight: 600;
+}
+
+/* 链接样式 */
+.publications-page a {
+	color: var(--color-accent);
+	text-decoration: none;
+	transition: color 0.2s;
+}
+
+.publications-page a:hover {
+	color: var(--color-accent);
+	text-decoration: underline;
+}
+
+/* 特殊标记 */
+.publications-page sup {
+	vertical-align: super;
+	font-size: 0.8em;
+	/* color: var(--red-mark); */
+}

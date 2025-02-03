@@ -1,0 +1,39 @@
+<section class="page publications-page">
+	<div class="container">
+
+		<h4 class="en-version">Preprints</h4>
+        <h4 class="cn-version">预印本</h4>
+		<ol>
+			<li>
+				<p>
+					<strong>title</strong><br />
+					zuozhe1, zuozhe2, zuozhe3, <strong>zuozhe4<sup>✉</sup></strong> [<a href="">arXiv</a>] [<a href="">Code</a>]<br />
+                    <em>Nature</em> <strong>619</strong>, 526-532, 2023 [<a href="">Link</a>] [<a href="">Code</a>]<br />
+					⚑ <strong><font color="blue">Hot Paper</font></strong>
+				</p>
+			</li>
+		</ol>
+
+		<h4 class="en-version">Journal Articles</h4>
+        <h4 class="cn-version">期刊论文</h4>
+		<ol>
+
+		</ol>
+
+		<h4 class="en-version">Conference Proceedings</h4>
+        <h4 class="cn-version">会议论文</h4>
+		<ol>
+
+        </ol>
+	</div>
+</section>
+
+<!-- 学术统计脚本 -->
+<script>
+	document.querySelectorAll(".scicrx-btn").forEach((btn) => {
+		btn.addEventListener("click", function () {
+			const paperId = this.getAttribute("paper_id");
+			trackPaperClick(paperId); // 自定义统计函数
+		});
+	});
+</script>
