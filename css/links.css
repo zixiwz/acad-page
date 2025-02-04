@@ -1,29 +1,25 @@
-/* 整体容器样式 */
 .page.links-page {
     display: flex;
     height: 80vh;
+    flex-wrap: wrap;
 }
 
-/* 左边面板样式 */
 .links-page .left-panel {
-    flex: 0.5;
-    border-right: 1px solid var(--color-accent);
+    width: 40%;
     padding: 40px;
 }
 
-/* 左边面板中 iframe 的样式 */
 .links-page .left-panel iframe {
     border: none;
 }
 
-/* 右边面板样式 */
+
 .links-page .right-panel {
     flex: 1;
     padding: 40px;
     overflow-y: auto;
 }
 
-/* 链接列表样式 */
 .links-page #link-list {
     list-style-type: none;
     display: grid;
@@ -31,6 +27,11 @@
     grid-gap: 20px;
 }
 
+.links-page h2,
+.links-page a{
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
 
 .links-page .link-item {
     display: flex;
@@ -44,6 +45,7 @@
 
 .links-page #site-info {
     margin-bottom: 20px;
+    /* border: 1px solid var(--color-border); */
 }
 
 .links-page #favicon {
@@ -70,8 +72,20 @@
 
 
 .links-page #web-display {
-  transform: scale(0.333);
-  transform-origin: 0 0;
-  width: 300%;
-  height: 200%;
+    transform: scale(0.333);
+    transform-origin: 0 0;
+    width: 300%;
+    height: 140%;
+}
+
+@media (max-width: 768px) {
+	.links-page #web-display {
+        display: none;
+    }
+    .links-page .left-panel {
+        padding-bottom: 0px;
+    }
+    .links-page .right-panel {
+        padding-top: 0px;
+    }
 }

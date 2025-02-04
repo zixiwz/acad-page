@@ -29,6 +29,10 @@ main {
 	margin: auto;
 }
 
+.page p{
+	overflow-wrap: break-word
+}
+
 .page.active {
 	display: block;
 }
