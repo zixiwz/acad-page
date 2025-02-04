@@ -105,34 +105,28 @@
     .page {
         display: flex;
     }
-
     .contact-links {
         flex-direction: column;
 		gap: 10px;
     }
-
     .header {
 		flex-direction: column;
 	}
 	.avatar {
         margin-bottom: 20px;
 	}
-
     .left-column {
         flex: 0.5;
         width: 100px;
     }
-
     .main-content {
         flex: 1.5;
 		width: auto;
         padding-left: 40px;
     }
-
 	.section h2 {
-		margin-top: 10px;
+		margin-top: 20px;
 	}
-
 	.contact-links i {
 		width: 23px;
 	}
