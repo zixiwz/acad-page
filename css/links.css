@@ -1,6 +1,5 @@
 .page.links-page {
     display: flex;
-    height: 80vh;
     flex-wrap: wrap;
 }
 
@@ -87,5 +86,8 @@
     }
     .links-page .right-panel {
         padding-top: 0px;
+    }
+    .links-page .left-panel {
+        width: 100%;
     }
 }

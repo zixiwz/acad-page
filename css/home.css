@@ -32,6 +32,7 @@
 	display: flex;
     flex-wrap: wrap;
 	gap: 30px;
+	row-gap: 15px;
 }
 
 .contact-links a {
@@ -124,9 +125,6 @@
 		width: auto;
         padding-left: 40px;
     }
-	.section h2 {
-		margin-top: 20px;
-	}
 	.contact-links i {
 		width: 23px;
 	}

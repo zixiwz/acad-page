@@ -10,6 +10,12 @@ body {
 	padding: 0 30px;
 }
 
+@media (max-width: 500px) {
+	.page {
+		padding: 0 0;
+	}
+}
+
 /* 标题样式 */
 .publications-page h4 {
 	font-size: 1.5rem;
@@ -48,7 +54,7 @@ body {
 }
 
 .publications-page ol li p {
-	display: inline-blocke;
+	display: inline-block;
 }
 
 /* 强调文本 */

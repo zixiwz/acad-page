@@ -101,7 +101,7 @@ class App {
 						event.target.dataset.avatar || "images/default-avatar.svg";
 					siteName.textContent = event.target.textContent;
 					siteLink.href = event.target.dataset.url;
-					siteLink.textContent = event.target.dataset.url || "#";
+					// siteLink.textContent = event.target.dataset.url || "#";
 					webDisplay.src = event.target.dataset.url || "#";
 				});
 			}
