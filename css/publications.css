@@ -10,8 +10,8 @@ body {
 	padding: 0 30px;
 }
 
-@media (max-width: 500px) {
-	.page {
+@media (max-width: 768px) {
+	.publications-page .container {
 		padding: 0 0;
 	}
 }
