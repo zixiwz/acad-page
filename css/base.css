@@ -11,6 +11,8 @@ body {
 	background-color: var(--color-bg-main);
 	color: var(--color-text-primary);
 	transition: background-color 0.3s, color 0.3s;
+	/* font-family: "Arial", "Helvetica Neue", Helvetica, sans-serif; */
+	/* font-family: "Times New Roman", Times, serif; */
 }
 
 main {

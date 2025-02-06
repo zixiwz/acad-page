@@ -47,7 +47,7 @@
 	filter: brightness(0.8);
 }
 
-.home-page .section h2 {
+.home-page .main-content h2 {
 	border-bottom: 2px solid var(--color-accent);
 	padding-bottom: 10px;
 	margin-bottom: 15px;

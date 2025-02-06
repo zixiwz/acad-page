@@ -31,7 +31,7 @@
 1. 克隆本仓库到本地：
 
    ```sh
-   git clone <仓库地址>
+   git clone https://github.com/Dramwig/top-page.git
    ```
 
 2. 打开项目文件夹，根据自己的需求修改相关文件。

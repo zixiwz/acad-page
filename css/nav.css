@@ -70,8 +70,9 @@
     cursor: pointer;
 	padding: 3px 6px;
 	height: 1.2em;
-	filter: invert(24%) sepia(30%) saturate(10%) hue-rotate(316deg) brightness(89%) contrast(91%);
+	fill: var(--color-accent);
 }
+
 
 #lang-switcher-mini {
 	display: none;
@@ -87,7 +88,7 @@
 	}
 
 	.navbar a {
-		padding: 6px 8px;
+		padding: 3px 6px;
 		font-size: 0.9em;
 	}
 	.lang-switcher {
@@ -101,7 +102,7 @@
 		gap: 5px;
 	}
 	.navbar a {
-		padding: 4px 6px;
+		padding: 2px 4px;
 		font-size: 0.8em;
 	}
 	#lang-switcher-mini {
