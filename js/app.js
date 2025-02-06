@@ -1,3 +1,13 @@
+function showError(error) {
+	document.getElementById("app").innerHTML = `
+	<div class="error-message">
+		<h2>⚠️ Loading Error</h2>
+		<p>${error.message}</p>
+		<button onclick="location.reload()">Retry</button>
+	</div>
+	`;
+}
+
 class App {
 	constructor() {
 		this.basePath = window.location.pathname
@@ -14,15 +24,17 @@ class App {
 			await this.loadPage();
 			this.setupRouter();
 		} catch (error) {
-			this.showError(error);
+			showError(error);
 		}
 	}
 
 	async loadComponent(name) {
 		try {
 			const response = await fetch(`${this.basePath}/partials/${name}.html`);
-			if (!response.ok)
+			if (!response.ok){
+				console.error(`${this.basePath}/partials/${name}.html?`);
 				throw new Error(`${response.status} ${response.statusText}`);
+			}
 			const html = await response.text();
 			this.appContainer.insertAdjacentHTML("afterbegin", html);
 		} catch (error) {
@@ -43,17 +55,17 @@ class App {
 
 			const response = await fetch(`${this.basePath}/partials/${pageId}.html`);
 			if (!response.ok) throw new Error(`Page not found: ${pageId}`);
-			
+
 			const pages = this.appContainer.querySelectorAll(".page,.error-message");
 			pages.forEach((page) => page.remove());
 			const html = await response.text();
-			
+
 			this.appContainer.insertAdjacentHTML("beforeend", html);
-			this.setLanguageVisibility(document.documentElement.lang);
+			setLanguageVisibility(document.documentElement.lang);
 			this.updateNavState(pageId);
 		} catch (error) {
 			console.error("Page load error:", error);
-			this.showError(error);
+			showError(error);
 		}
 	}
 
@@ -88,63 +100,52 @@ class App {
 			link.setAttribute("aria-current", isActive ? "page" : null);
 		});
 		if (pageId === "links") {
-			const linkList = document.getElementsByClassName("link-item");
-			const favicon = document.getElementById("favicon");
-			const siteName = document.getElementById("site-name");
-			const siteLink = document.getElementById("site-link");
-			const webDisplay = document.getElementById("web-display");
-
-			for (let i = 0; i < linkList.length; i++) {
-				console.log(linkList[i].textContent);
-				linkList[i].addEventListener("click", function (event) {
-					favicon.src =
-						event.target.dataset.avatar || "images/default-avatar.svg";
-					siteName.textContent = event.target.textContent;
-					siteLink.href = event.target.dataset.url;
-					// siteLink.textContent = event.target.dataset.url || "#";
-					webDisplay.src = event.target.dataset.url || "#";
-				});
-			}
+			addEventListenerToLinks();
 		}
 	}
+}
 
-	showError(error) {
-		document.getElementById("app").innerHTML = `
-		<div class="error-message">
-		  <h2>⚠️ Loading Error</h2>
-		  <p>${error.message}</p>
-		  <button onclick="location.reload()">Retry</button>
-		</div>
-	  `;
-	}
+new App();
 
-	setLanguageVisibility(currentLanguage) {
-		var selector = `.${currentLanguage}-version`;
-		document.querySelectorAll(selector).forEach((div) => {
-			div.classList.remove("hide");
-			div.classList.add("show");
-		});
-		selector = `.${currentLanguage === "en" ? "cn" : "en"}-version`;
-		document.querySelectorAll(selector).forEach((div) => {
-			div.classList.remove("show");
-			div.classList.add("hide");
+function addEventListenerToLinks() {
+	const linkList = document.getElementsByClassName("link-item");
+	const favicon = document.getElementById("favicon");
+	const siteName = document.getElementById("site-name");
+	const siteLink = document.getElementById("site-link");
+	const webDisplay = document.getElementById("web-display");
+
+	for (let i = 0; i < linkList.length; i++) {
+		console.log(linkList[i].textContent);
+		linkList[i].addEventListener("click", function (event) {
+			favicon.src =
+				event.target.dataset.avatar || "images/default-avatar.svg";
+			siteName.textContent = event.target.textContent;
+			siteLink.href = event.target.dataset.url;
+			webDisplay.src = event.target.dataset.url || "#";
 		});
 	}
 }
 
-// 启动应用
-new App();
+function setLanguageVisibility(currentLanguage) {
+	var selector = `.${currentLanguage}-version`;
+	document.querySelectorAll(selector).forEach((div) => {
+		div.classList.remove("hide");
+		div.classList.add("show");
+	});
+	selector = `.${currentLanguage === "en" ? "cn" : "en"}-version`;
+	document.querySelectorAll(selector).forEach((div) => {
+		div.classList.remove("show");
+		div.classList.add("hide");
+	});
+}
 
 function toggleLanguage() {
 	document.documentElement.lang =
 		document.documentElement.lang === "en" ? "cn" : "en";
-	// console.log(`当前语言: ${document.documentElement.lang}`);
-
 	document.querySelectorAll(".en-label, .zh-label").forEach((div) => {
 		div.classList.toggle("active");
 	});
-	App.prototype.setLanguageVisibility(document.documentElement.lang);
-	
+	setLanguageVisibility(document.documentElement.lang);
 }
 
 function toggleMenu() {

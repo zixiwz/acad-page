@@ -22,9 +22,9 @@
 
 ## 访问链接
 
-- **主站**：<https://www.wangzixi.to>（CNAME 指向 GitHub）
-- **GitHub 页面**：<https://dramwig.github.io/top-page/>
-- **Netlify 页面**：<https://wangzixi.netlify.app/>（与 GitHub 同步）
+- **主站**：<https://www.wangzixi.top>（CNAME 指向 GitHub）
+- **GitHub 页面**：<https://dramwig.github.io/top-page>
+- **Netlify 页面**：<https://wangzixi.netlify.app>（与 GitHub 同步）
 
 ## 如何使用
 
