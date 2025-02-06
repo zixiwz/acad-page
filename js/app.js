@@ -10,10 +10,6 @@ function showError(error) {
 
 class App {
 	constructor() {
-		this.basePath = window.location.pathname
-			.replace(/\/[^\/]*$/, "")
-			.replace(/^\//, "");
-		console.log(`${this.basePath}`,'-' ,`${window.location.pathname}`);
 		this.appContainer = document.getElementById("app");
 		this._cachedPageIds = null;
 		this.init();
@@ -31,9 +27,9 @@ class App {
 
 	async loadComponent(name) {
 		try {
-			const response = await fetch(`${this.basePath}/partials/${name}.html`);
-			console.log(`${this.basePath}/partials/${name}.html?`);
+			const response = await fetch(`/partials/${name}.html`);
 			if (!response.ok){
+				console.log(`errer: /partials/${name}.html`);
 				throw new Error(`${response.status} ${response.statusText}`);
 			}
 			const html = await response.text();
@@ -54,7 +50,7 @@ class App {
 			const pageId = this.getCurrentPageId();
 			console.log("Loading page:", pageId);
 
-			const response = await fetch(`${this.basePath}/partials/${pageId}.html`);
+			const response = await fetch(`/partials/${pageId}.html`);
 			if (!response.ok) throw new Error(`Page not found: ${pageId}`);
 
 			const pages = this.appContainer.querySelectorAll(".page,.error-message");
