@@ -13,6 +13,7 @@ class App {
 		this.basePath = window.location.pathname
 			.replace(/\/[^\/]*$/, "")
 			.replace(/^\//, "");
+		console.log(`${this.basePath}`,'-' ,`${window.location.pathname}`);
 		this.appContainer = document.getElementById("app");
 		this._cachedPageIds = null;
 		this.init();
@@ -31,8 +32,8 @@ class App {
 	async loadComponent(name) {
 		try {
 			const response = await fetch(`${this.basePath}/partials/${name}.html`);
+			console.log(`${this.basePath}/partials/${name}.html?`);
 			if (!response.ok){
-				console.error(`${this.basePath}/partials/${name}.html?`);
 				throw new Error(`${response.status} ${response.statusText}`);
 			}
 			const html = await response.text();
