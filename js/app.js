@@ -27,7 +27,7 @@ class App {
 
 	async loadComponent(name) {
 		try {
-			const response = await fetch(`/partials/${name}.html`);
+			const response = await fetch(`./partials/${name}.html`);
 			if (!response.ok) {
 				throw new Error(`${response.status} ${response.statusText}`);
 			}
@@ -49,7 +49,7 @@ class App {
 			const pageId = this.getCurrentPageId();
 			console.log("Loading page:", pageId);
 
-			const response = await fetch(`/partials/${pageId}.html`);
+			const response = await fetch(`./partials/${pageId}.html`);
 			if (!response.ok) throw new Error(`Page not found: ${pageId}`);
 
 			const pages = this.appContainer.querySelectorAll(".page,.error-message");
