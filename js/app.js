@@ -54,7 +54,7 @@ class App {
 			const pageId = this.getCurrentPageId();
 			console.log("Loading page:", pageId);
 
-			const response = await fetch(`${this.basePath}/partials/${pageId}.html`);
+			const response = await fetch(`/partials/${pageId}.html`);
 			if (!response.ok) throw new Error(`Page not found: ${pageId}`);
 
 			const pages = this.appContainer.querySelectorAll(".page,.error-message");
