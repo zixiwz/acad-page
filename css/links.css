@@ -69,6 +69,11 @@
     color: var(--color-accent);
 }
 
+.links-page #site-link h2{
+    margin-top: 15px;
+    height: 50px;
+}
+
 
 .links-page #web-display {
     transform: scale(0.333);
@@ -78,6 +83,10 @@
 }
 
 @media (max-width: 768px) {
+    .links-page{
+        flex-direction: column;
+    }
+
 	.links-page #web-display {
         display: none;
     }
