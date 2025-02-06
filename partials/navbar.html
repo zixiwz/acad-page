@@ -1,5 +1,8 @@
 <nav class="navbar">
-	<ul>
+	<div class="menu-icon" onclick="toggleMenu()">
+		<img id="menu-icon" src="images/memu.svg" alt="menu">
+	</div>
+	<ul class="nav-links">
 		<li><a href="#home" class="nav-link">Home</a></li>
 		<!-- <li><a href="#research" class="nav-link">Research</a></li> -->
 		<li><a href="#publications" class="nav-link">Publications</a></li>
@@ -8,9 +11,13 @@
 		<li><a href="#cv" class="nav-link">CV</a></li>
 	</ul>
 
-	<div class="lang-switcher" onclick="toggleLanguage()">
+	<div class="lang-switcher" id="lang-switcher" onclick="toggleLanguage()">
 		<span class="en-label active">EN</span>
 		/
 		<span class="zh-label">CN</span>
+	</div>
+	<div class="lang-switcher" id="lang-switcher-mini" onclick="toggleLanguage()">
+		<span class="en-label en-version active">EN</span>
+		<span class="zh-label cn-version ">CN</span>
 	</div>
 </nav>
