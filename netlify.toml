@@ -1,0 +1,6 @@
+[[headers]]
+  # 匹配所有路径
+  for = "/*"
+
+  [headers.values]
+  X-Content-Type-Options = "nosniff"
