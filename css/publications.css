@@ -44,6 +44,7 @@
 }
 
 .publications-page ol li:active {
+	-webkit-transform: translateX(-3px);
 	transform: translateX(-3px);
 }
 

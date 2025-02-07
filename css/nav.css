@@ -42,11 +42,12 @@
 }
 
 .lang-switcher:hover {
+	-webkit-transform: scale(0.9);
 	transform: scale(0.9);
 }
 
 .lang-switcher:active {
-	/* background-color: var(--color-accent); */
+	-webkit-transform: scale(0.9) rotate(5deg);
 	transform: scale(0.9) rotate(5deg);
 }
 
@@ -126,10 +127,7 @@
 
 @media (hover: none) {
     .lang-switcher:hover {
+		-webkit-transform: none;
 		transform: none;
-	}
-
-	.lang-switcher:active {
-		transform: scale(0.9) rotate(5deg);
 	}
 }
