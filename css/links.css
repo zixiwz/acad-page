@@ -61,6 +61,17 @@
     margin: 0 auto;
 }
 
+.links-page a {
+	color: var(--color-accent);
+	text-decoration: none;
+	transition: color 0.2s;
+}
+
+.links-page a:hover {
+	color: var(--color-accent);
+	text-decoration: underline;
+}
+
 .links-page #site-link {
     display: block;
     width: fit-content;

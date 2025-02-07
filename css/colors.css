@@ -10,6 +10,7 @@
 	--color-scrollbar: #5c5e70;
 	
 	--color-title: #2c3e50;
+	--red-mark: #ff0000;
 }
 
 @media (prefers-color-scheme: dark) {

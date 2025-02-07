@@ -130,4 +130,8 @@
 		-webkit-transform: none;
 		transform: none;
 	}
+	.lang-switcher:active {
+		-webkit-transform: scale(0.9) rotate(5deg);
+		transform: scale(0.9) rotate(5deg);
+	}
 }
