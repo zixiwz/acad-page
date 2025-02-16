@@ -12,7 +12,6 @@
     border: none;
 }
 
-
 .links-page .right-panel {
     flex: 1;
     padding: 40px;
@@ -82,9 +81,15 @@
 
 .links-page #site-link h2{
     margin-top: 15px;
-    height: 50px;
 }
 
+.left-panel #site-link p {
+    font-size: 1.1em;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+    text-align: center;
+    margin-bottom: 6px;
+}
 
 .links-page #web-display {
     -webkit-transform: scale(0.333);
