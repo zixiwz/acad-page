@@ -2,9 +2,9 @@
 	position: sticky;
 	top: 0;
 	z-index: 1;
-	background-color: var(--color-bg-card);
+	background-color: var(--color-bg-nav);
 	padding: 0.5rem 5%;
-	box-shadow: 0 2px 10px var(--color-shadow);
+	border-bottom: 1px solid var(--color-border);
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;

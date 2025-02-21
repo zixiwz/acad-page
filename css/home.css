@@ -47,11 +47,11 @@
 	filter: brightness(0.8);
 }
 
-.home-page .main-content h2 {
-	border-bottom: 2px solid var(--color-accent);
+.main-content h2 {
+	border-bottom: 1.5px solid var(--color-accent);
 	padding-bottom: 10px;
-	margin-bottom: 15px;
-	margin-top: 20px;
+	margin-bottom: 5px;
+	margin-top: 15px;
 }
 
 .education-list li {
@@ -65,16 +65,19 @@
 
 .paper-list li {
 	background-color: var(--color-bg-card);
-	padding: 20px;
-	margin-bottom: 15px;
+	padding: 10px 10px;
+	margin-bottom: 0px;
 	border-radius: 5px;
-	box-shadow: 0 2px 5px var(--color-shadow);
 	transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.paper-list li:hover {
+	box-shadow: 0 2px 5px var(--color-shadow);
 }
 
 .paper-list li h3 {
 	color: var(--color-text-primary);
-	margin-bottom: 8px;
+	margin-bottom: 5px;
 }
 
 @media (max-width: 768px) {
@@ -98,9 +101,20 @@
     .page {
         display: flex;
     }
+	.home-page {
+		padding-left: 4%;
+		padding-right: 16%;
+    }
+	.info h1 {
+		font-size: 2em;
+	}
+	.info p {
+		font-size: 0.8em;
+	}
     .contact-links {
         flex-direction: column;
 		gap: 10px;
+		font-size: 0.8em;
     }
     .header {
 		flex-direction: column;
@@ -115,7 +129,7 @@
     .main-content {
         flex: 1.5;
 		width: auto;
-        padding-left: 40px;
+		margin-left: 10px
     }
 	.contact-links i {
 		width: 23px;

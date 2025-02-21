@@ -1,6 +1,7 @@
 :root {
-	--color-bg-main: #f8f9fa;
-	--color-bg-card: #ffffff;
+	--color-bg-main: #ffffff;
+	--color-bg-nav: #f6f8fa;
+	--color-bg-card: #fcfcff;
 	--color-border: #e0e0e0;
 	--color-shadow: rgba(0, 0, 0, 0.1);
 
@@ -16,7 +17,8 @@
 @media (prefers-color-scheme: dark) {
 	:root {
 		--color-bg-main: #1a1a1a;
-		--color-bg-card: #2d2d2d;
+		--color-bg-nav: #2d2d2d;
+		--color-bg-card: #000000;
 		--color-border: #404040;
 		--color-shadow: rgba(0, 0, 0, 0.3);
 
