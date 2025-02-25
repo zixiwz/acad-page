@@ -1,15 +1,13 @@
 .page.links-page {
     display: flex;
+    min-height: 80vh;
     flex-wrap: wrap;
+    
 }
 
 .links-page .left-panel {
     width: 40%;
     padding: 40px;
-}
-
-.links-page .left-panel iframe {
-    border: none;
 }
 
 .links-page .right-panel {
@@ -92,10 +90,10 @@
 }
 
 .links-page #web-display {
-    -webkit-transform: scale(0.333);
-    transform: scale(0.333);
+-webkit-transform: scale(0.5);
+    transform: scale(0.5);
     transform-origin: 0 0;
-    width: 300%;
+    width: 200%;
     height: 140%;
 }
 

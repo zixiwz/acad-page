@@ -1,7 +1,7 @@
 .cv-page object {
     width: 100%;
     flex: 1;
-    height: 91%;
+    height: 80vh;
     display: flex;
-    margin: 3vh auto 6vh auto;
+    margin: 3vh auto 2vh auto;
 }
