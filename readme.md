@@ -1,4 +1,4 @@
-# Top-Page
+# Acad-Page
 
 本仓库旨在替换臃肿的 [academicpages](https://github.com/academicpages/academicpages.github.io) 项目，提供一个更加简洁、高效的解决方案。本项目使用纯 **HTML + CSS + JavaScript** 原生技术栈。
 

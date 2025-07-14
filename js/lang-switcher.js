@@ -20,6 +20,7 @@ function toggleLanguage() {
 		div.classList.toggle("active");
 	});
 	setLanguageVisibility(document.documentElement.lang);
+	showToast("Language switched to " + document.documentElement.lang);
 }
 
 setLanguageVisibility(document.documentElement.lang);
