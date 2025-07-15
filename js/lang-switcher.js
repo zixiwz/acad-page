@@ -1,16 +1,17 @@
-// lang-switcher.js
-
 function setLanguageVisibility(currentLanguage) {
-	var selector = `.${currentLanguage}-version`;
-	document.querySelectorAll(selector).forEach((div) => {
-		div.classList.remove("hide");
-		div.classList.add("show");
-	});
-	selector = `.${currentLanguage === "en" ? "cn" : "en"}-version`;
-	document.querySelectorAll(selector).forEach((div) => {
-		div.classList.remove("show");
-		div.classList.add("hide");
-	});
+    var selector = `.${currentLanguage}-version`;
+    const visibleElements = document.querySelectorAll(selector);
+    visibleElements.forEach((div) => {
+        div.classList.remove("hide");
+    });
+    // showToast(`修改了 ${visibleElements.length} 个 ${currentLanguage}-version 元素为显示状态`);
+
+    selector = `.${currentLanguage === "en" ? "cn" : "en"}-version`;
+    const hiddenElements = document.querySelectorAll(selector);
+    hiddenElements.forEach((div) => {
+        div.classList.add("hide");
+    });
+    // showToast(`修改了 ${hiddenElements.length} 个 ${currentLanguage === "en" ? "cn" : "en"}-version 元素为隐藏状态`);
 }
 
 function toggleLanguage() {
@@ -24,3 +25,7 @@ function toggleLanguage() {
 }
 
 setLanguageVisibility(document.documentElement.lang);
+
+// document.addEventListener("DOMContentLoaded", function () {
+//     setLanguageVisibility(document.documentElement.lang);
+// });
