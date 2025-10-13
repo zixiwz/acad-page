@@ -130,13 +130,33 @@ function parseMarkdown(md){
 
 /* --------- load .md and render --------- */
 async function loadAndRender(){
-    const params = new URLSearchParams(location.search);
-    const mdFile = params.get('md') || 'post.md';
+    // 从 URL 路径或查询参数中获取文件名
+    let mdFile = 'post.md'; // 默认文件
+    
+    // 首先尝试从 URL 路径中提取文件名
+    const pathParts = location.pathname.split('/').filter(part => part);
+    if (pathParts.length > 0) {
+        const lastPart = pathParts[pathParts.length - 1];
+        // 如果路径最后一部分不是 'viewer'、'docs' 或任何 .html 文件，则认为是文件名
+        if (lastPart !== 'viewer' && lastPart !== 'docs' && !lastPart.endsWith('.html')) {
+            mdFile = lastPart + '.md';
+        }
+    }
+    
+    // 如果 URL 路径中没有找到文件名，则从查询参数中获取
+    if (mdFile === 'post.md') {
+        const params = new URLSearchParams(location.search);
+        const paramFile = params.get('md');
+        if (paramFile) {
+            mdFile = paramFile;
+        }
+    }
+    
     const titleEl = document.getElementById('title');
     const metaEl    = document.getElementById('meta');
     const content = document.getElementById('content');
 
-    titleEl.textContent = mdFile.replace(/^.*\//,'');
+    titleEl.textContent = mdFile.replace(/^.*\//,'').replace(/\.md$/, '');
     metaEl.textContent    = 'Source: ' + mdFile;
 
     try{

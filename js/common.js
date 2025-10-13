@@ -31,14 +31,11 @@ function autoLoadPageScripts() {
         '/js/lang-switcher.js'
     ];
     
-    // 按顺序加载脚本
-    baseScriptsPath.reduce((promise, src) => {
-        return promise.then(() => {
-            return loadJS(src);
+    // 并行加载所有脚本
+    Promise.all(baseScriptsPath.map(src => loadJS(src)))
+        .catch(err => {
+            console.error('加载脚本失败:', err);
         });
-    }, Promise.resolve()).catch(err => {
-        console.error('加载脚本失败:', err);
-    });
 }
 
 // 页面加载完成后自动执行

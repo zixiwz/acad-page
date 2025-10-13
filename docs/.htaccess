@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# 重写规则：将 /docs/post 重定向到 /docs/viewer.html?md=post.md
+RewriteRule ^post$ viewer.html?md=post.md [L,QSA]
+
+# 通用规则：将 /docs/任意名称 重定向到 /docs/viewer.html?md=任意名称.md
+RewriteRule ^([^/]+)$ viewer.html?md=$1.md [L,QSA]
+
+# 如果直接访问 viewer.html，保持原样
+RewriteRule ^viewer\.html$ viewer.html [L]
