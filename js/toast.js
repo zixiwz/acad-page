@@ -39,5 +39,3 @@
     }, duration);
   };
 })();
-
-loadCSS("/css/toast.css");

@@ -1,7 +1,7 @@
 function addEventListenerToPublications() {
-	console.log('加载publications.html');
+	// console.log('加载publications.html');
 	const listItems = document.querySelectorAll("ol li");
-	console.log(listItems);
+	// console.log(listItems);
 	listItems.forEach(function (listItem) {
 		listItem.addEventListener('click', function () {
 			const title = this.querySelector('p strong').textContent;

@@ -160,8 +160,19 @@ async function loadAndRender(){
     metaEl.textContent    = 'Source: ' + mdFile;
 
     try{
-        const resp = await fetch(mdFile, {cache:'no-cache'});
-        if(!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        // 首先尝试直接加载本地文件
+        let resp = await fetch(mdFile, {cache:'no-cache'});
+        
+        // 如果本地文件加载失败，尝试使用GitHub Raw API
+        if (!resp.ok) {
+            // 构建GitHub Raw URL
+            const repoPath = 'zixiwz/acad-page'
+            const rawUrl = `https://raw.githubusercontent.com/${repoPath}/main/post/${mdFile}`;
+            
+            resp = await fetch(rawUrl, {cache:'no-cache'});
+            if (!resp.ok) throw new Error(`HTTP ${resp.status} - 本地和GitHub Raw都无法访问`);
+        }
+        
         const text = await resp.text();
         const html = parseMarkdown(text);
         content.innerHTML = html || '<p><em>(empty file)</em></p>';
