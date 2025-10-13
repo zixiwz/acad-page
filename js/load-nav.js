@@ -23,6 +23,7 @@
         <a href="${basePath}publications/"   class="nav-link">Publications</a>
         <a href="${basePath}links/"          class="nav-link">Links</a>
         <a href="${basePath}cv/"             class="nav-link">CV</a>
+        <a href="${basePath}post/"           class="nav-link">Post</a>
     </div>
 
     <div class="lang-switcher" id="lang-switcher" onclick="toggleLanguage()">

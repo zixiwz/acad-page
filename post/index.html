@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="文章列表 - 王梓翕的个人博客" />
+    <title>文章列表 - Zixi Wang</title>
+    <link rel="shortcut icon" href="../images/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="../css/colors.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/nav.css" />
+    <link rel="stylesheet" href="../css/toast.css" />
+    <link rel="stylesheet" href="post.css">
+    <style>
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: 0.6em 0 .6em;
+        }
+
+
+        .post-list {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .post-item {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .post-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--color-shadow);
+            border-color: var(--color-accent);
+        }
+        
+        .post-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        
+        .post-meta {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .post-excerpt {
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        
+        .post-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        
+        .tag {
+            background: var(--color-accent);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .category {
+            background: var(--color-bg-nav);
+            color: var(--color-text-primary);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 10px;
+        }
+        
+        .page-subtitle {
+            color: var(--color-text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--color-accent);
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: var(--color-text-primary);
+        }
+        
+        .back-link::before {
+            content: "←";
+            margin-right: 8px;
+        }
+        
+        .loading, .no-posts, .error {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--color-text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        .error {
+            color: #e74c3c;
+            background: #fdf2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            margin: 20px;
+        }
+        
+        .no-posts {
+            color: var(--color-text-secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .post-list {
+                padding: 10px;
+            }
+            
+            .post-item {
+                padding: 15px;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .post-meta {
+                flex-direction: column;
+                gap: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="page">
+        <div class="container">
+            <a href="../index.html" class="back-link">返回首页</a>
+            
+            <div class="page-header">
+                <h1 class="page-title">文章列表</h1>
+                <p class="page-subtitle">我的博客文章和随笔</p>
+            </div>
+            
+            <div class="post-list" id="postList">
+                <div class="loading">正在加载文章列表...</div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Zixi Wang &nbsp;
+            <a href="https://beian.miit.gov.cn/" target="_blank">蜀ICP备2025125007号-1</a> &nbsp;
+            <a href="https://beian.mps.gov.cn/#/query/webSearch?code=51012402001433" rel="noreferrer" target="_blank">
+                川公网安备51012402001433号
+            </a>
+        </p>
+    </footer>
+    
+    <script src="../js/common.js"></script>
+    <script src="../js/toast.js"></script>
+    <script src="../js/load-nav.js"></script>
+    <script src="../js/lang-switcher.js"></script>
+    <script>
+        // 动态加载的文章列表
+        let posts = [];
+        
+        // 解析YAML元数据（复用viewer.js中的函数）
+        function parseYAMLMetadata(text) {
+            const m = text.match(/^---\s*\n([\s\S]*?)\n---\s*/);
+            if (!m) return { metadata: {}, content: text };
+            const raw = m[1];
+            const content = text.slice(m[0].length);
+            const metadata = {};
+            
+            const lines = raw.split('\n');
+            for (let j = 0; j < lines.length; j++) {
+                let line = lines[j].trim();
+                
+                function stripCommentAndTrim(str) {
+                    const hashIndex = str.indexOf('#');
+                    if (hashIndex !== -1) {
+                        str = str.substring(0, hashIndex);
+                    }
+                    return str.trim();
+                }
+                line = stripCommentAndTrim(line);
+                if (!line) { continue;}
+                
+                const colonIndex = line.indexOf(':');
+                if (colonIndex > 0) {
+                    const key = line.substring(0, colonIndex).trim();
+                    let value = line.substring(colonIndex + 1).trim();
+                    
+                    if (!value) {
+                        const values = [];
+                        let k = j + 1;
+                        while (k < lines.length) {
+                            let nextLine = stripCommentAndTrim(lines[k]);
+                            if (!nextLine) { k++; continue; }
+                            if (nextLine.startsWith('-')) {
+                                values.push(nextLine.substring(1).trim());
+                                k++;
+                                continue;
+                            }
+                            break;
+                        }
+                        if (values.length > 0) {
+                            metadata[key] = values;
+                            j = k - 1;
+                            continue;
+                        }
+                        continue;
+                    } else {
+                        metadata[key] = value;
+                    }
+                } else {
+                    return { metadata: {'error': `Error parsing YAML metadata: ${line}`}, content: content };
+                }
+            }
+            return { metadata, content };
+        }
+        
+        // 获取摘要（从markdown内容中提取前几句话）
+        function getExcerpt(content, maxLength = 100) {
+            // 移除markdown语法，获取纯文本
+            let text = content
+                .replace(/^#+\s+/gm, '') // 移除标题标记
+                .replace(/^>\s+/gm, '') // 移除引用标记
+                .replace(/\*\*(.*?)\*\*/g, '$1') // 移除粗体标记
+                .replace(/\*(.*?)\*/g, '$1') // 移除斜体标记
+                .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // 移除链接，保留文本
+                .replace(/`([^`]+)`/g, '$1') // 移除行内代码标记
+                .replace(/```[\s\S]*?```/g, '') // 移除代码块
+                .replace(/\n+/g, ' ') // 替换换行为空格
+                .trim();
+            
+            if (text.length <= maxLength) {
+                return text;
+            }
+            
+            // 找到最后一个句号或问号或感叹号
+            const lastSentenceEnd = Math.max(
+                text.lastIndexOf('。', maxLength),
+                text.lastIndexOf('？', maxLength),
+                text.lastIndexOf('！', maxLength),
+                text.lastIndexOf('.', maxLength),
+                text.lastIndexOf('?', maxLength),
+                text.lastIndexOf('!', maxLength)
+            );
+            
+            if (lastSentenceEnd > maxLength * 0.5) {
+                return text.substring(0, lastSentenceEnd + 1);
+            }
+            
+            return text.substring(0, maxLength * 0.9) + '...';
+        }
+        
+        // 动态加载文章列表
+        async function loadPosts() {
+            const postList = document.getElementById('postList');
+            postList.innerHTML = '<div class="loading">正在加载文章列表...</div>';
+            
+            try {
+                let markdownFiles = [];
+                
+                // 方法1: 尝试使用GitHub API获取仓库文件列表
+                try {
+                    const githubResponse = await fetch('https://api.github.com/repos/zixiwz/acad-page/contents/post', {
+                        cache: 'no-cache'
+                    });
+                    
+                    if (githubResponse.ok) {
+                        const files = await githubResponse.json();
+                        markdownFiles = files
+                            .filter(file => file.name.endsWith('.md'))
+                            .map(file => file.name);
+                        console.log('通过GitHub API获取到文件列表:', markdownFiles);
+                    } else {
+                        console.warn('GitHub API获取失败:', githubResponse.status);
+                        postList.innerHTML = '<div class="error">GitHub API获取失败，请稍后重试<br>' + githubResponse.status + '</div>';
+                    }
+                } catch (githubError) {
+                    console.warn('GitHub API获取失败:', githubError);
+                    postList.innerHTML = '<div class="error">GitHub API获取失败，请稍后重试<br>' + githubError + '</div>';
+                }
+                
+                const loadedPosts = [];
+                
+                for (const filename of markdownFiles) {
+                    try {
+                        const repoPath = 'zixiwz/acad-page'
+                        const rawUrl = `https://raw.githubusercontent.com/${repoPath}/main/post/${filename}`;
+                        const response = await fetch(rawUrl, { cache: 'no-cache' });
+                        if (!response.ok) {
+                            const post = {
+                                file: filename,
+                                title: filename.replace('.md', ''),
+                                date: metadata.date || '未知日期',
+                                category: '未分类',
+                                tags: [],
+                                excerpt: '无法加载文章'
+                            };
+                            
+                            loadedPosts.push(post);
+                            continue;
+                        }
+                        
+                        const text = await response.text();
+                        const { metadata, content } = parseYAMLMetadata(text);
+                        
+                        const post = {
+                            file: filename,
+                            title: metadata.title || filename.replace('.md', ''),
+                            date: metadata.date || '未知日期',
+                            category: metadata.categories || '未分类',
+                            tags: Array.isArray(metadata.tags) ? metadata.tags : (metadata.tags ? [metadata.tags] : []),
+                            excerpt: getExcerpt(content)
+                        };
+                        
+                        loadedPosts.push(post);
+                    } catch (error) {
+                        console.error(`加载 ${filename} 时出错:`, error);
+                        postList.innerHTML = '<div class="error">加载文章' + filename + ' 失败，请稍后重试<br>' + error + '</div>';
+                    }
+                }
+                
+                // 按日期排序（最新的在前）
+                loadedPosts.sort((a, b) => {
+                    const dateA = new Date(a.date);
+                    const dateB = new Date(b.date);
+                    return dateB - dateA;
+                });
+                
+                posts = loadedPosts;
+                renderPostList();
+                
+            } catch (error) {
+                console.error('加载文章列表失败:', error);
+                postList.innerHTML = '<div class="error">加载文章列表失败，请稍后重试</div>';
+            }
+        }
+        
+        // 渲染文章列表
+        function renderPostList() {
+            const postList = document.getElementById('postList');
+            
+            if (posts.length === 0) {
+                postList.innerHTML = '<div class="no-posts">暂无文章</div>';
+                return;
+            }
+            
+            const html = posts.map(post => `
+                <div class="post-item" onclick="viewPost('${post.file}')">
+                    <h2 class="post-title">${post.title}</h2>
+                    <div class="post-meta">
+                        <span>📅 ${post.date}</span>
+                        <span class="category">${post.category}</span>
+                    </div>
+                    <div class="post-excerpt">${post.excerpt}</div>
+                    <div class="post-tags">
+                        ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+            
+            postList.innerHTML = html;
+        }
+        
+        // 查看文章
+        function viewPost(filename) {
+            window.location.href = `viewer.html?md=${filename}`;
+        }
+        
+        // 页面加载完成后动态加载文章列表
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPosts();
+        });
+    </script>
+</body>
+</html>

@@ -14,6 +14,9 @@ function safeUrl(url){
 function parseMarkdown(md){
     // Normalize line endings
     md = md.replace(/\r\n?/g, '\n');
+    
+    // Remove HTML comments (like <!-- more -->)
+    md = md.replace(/<!--[\s\S]*?-->/g, '');
 
     const lines = md.split('\n');
     let html = '';
@@ -128,36 +131,88 @@ function parseMarkdown(md){
     return html.trim();
 }
 
+/* --------- YAML metadata parser --------- */
+
+
+function parseYAMLMetadata(text) {
+    const m = text.match(/^---\s*\n([\s\S]*?)\n---\s*/);
+    if (!m) return { metadata: {}, content: text };
+    const raw = m[1];
+    const content = text.slice(m[0].length);
+    const metadata = {};
+    // raw.split('\n').forEach(line => {
+    //     if (!line.trim() || line.trim().startsWith('#')) return;
+    //     const [k, ...rest] = line.split(':');
+    //     metadata[k.trim()] = rest.join(':').trim();
+    // });
+    const lines = raw.split('\n');
+    for (let j = 0; j < lines.length; j++) {
+        let line = lines[j].trim();
+        
+        // 去除行首和行尾空格以及#前的空格和后面的注释
+        function stripCommentAndTrim(str) {
+            const hashIndex = str.indexOf('#');
+            if (hashIndex !== -1) {
+                str = str.substring(0, hashIndex);
+            }
+            return str.trim();
+        }
+        line = stripCommentAndTrim(line);
+        if (!line) { continue;}
+        
+        const colonIndex = line.indexOf(':');
+        if (colonIndex > 0) {
+            const key = line.substring(0, colonIndex).trim();
+            let value = line.substring(colonIndex + 1).trim();
+            
+            // 如果值只有注释或为空，尝试向下收集列表项
+            if (!value) {
+                const values = [];
+                let k = j + 1;
+                while (k < lines.length) {
+                    let nextLine = stripCommentAndTrim(lines[k]);
+                    if (!nextLine) { k++; continue; }
+                    if (nextLine.startsWith('-')) {
+                        values.push(nextLine.substring(1).trim());
+                        k++;
+                        continue;
+                    }
+                    break;
+                }
+                if (values.length > 0) {
+                    metadata[key] = values;
+                    j = k - 1; // 跳过已收集的数组项
+                    continue;
+                }
+                // 没有数组项，跳过该字段
+                continue;
+            } else {
+                metadata[key] = value;
+            }
+        } else {
+            return { metadata: {'error': `Error parsing YAML metadata: ${line}`}, content: content };
+        }
+    }
+    return { metadata, content };
+}
+
 /* --------- load .md and render --------- */
 async function loadAndRender(){
     // 从 URL 路径或查询参数中获取文件名
     let mdFile = 'post.md'; // 默认文件
     
-    // 首先尝试从 URL 路径中提取文件名
-    const pathParts = location.pathname.split('/').filter(part => part);
-    if (pathParts.length > 0) {
-        const lastPart = pathParts[pathParts.length - 1];
-        // 如果路径最后一部分不是 'viewer'、'docs' 或任何 .html 文件，则认为是文件名
-        if (lastPart !== 'viewer' && lastPart !== 'docs' && !lastPart.endsWith('.html')) {
-            mdFile = lastPart + '.md';
-        }
-    }
-    
-    // 如果 URL 路径中没有找到文件名，则从查询参数中获取
-    if (mdFile === 'post.md') {
-        const params = new URLSearchParams(location.search);
-        const paramFile = params.get('md');
-        if (paramFile) {
-            mdFile = paramFile;
-        }
-    }
+    // // 如果 URL 路径中没有找到文件名，则从查询参数中获取
+    // if (mdFile === 'post.md') {
+    //     const params = new URLSearchParams(location.search);
+    //     const paramFile = params.get('md');
+    //     if (paramFile) {
+    //         mdFile = paramFile;
+    //     }
+    // }
     
     const titleEl = document.getElementById('title');
     const metaEl    = document.getElementById('meta');
     const content = document.getElementById('content');
-
-    titleEl.textContent = mdFile.replace(/^.*\//,'').replace(/\.md$/, '');
-    metaEl.textContent    = 'Source: ' + mdFile;
 
     try{
         // 首先尝试直接加载本地文件
@@ -174,7 +229,37 @@ async function loadAndRender(){
         }
         
         const text = await resp.text();
-        const html = parseMarkdown(text);
+        
+        // 解析 YAML 元数据
+        const { metadata, content: markdownContent } = parseYAMLMetadata(text);
+        
+        // 更新标题和元信息显示
+        if (metadata.title) {
+            titleEl.textContent = metadata.title;
+        } else {
+            titleEl.textContent = mdFile.replace(/^.*\//,'').replace(/\.md$/, '');
+        }
+        
+        // 构建元信息显示
+        let metaInfo = `Source: ${mdFile}`;
+        if (metadata.date) {
+            metaInfo += ` | Date: ${metadata.date}`;
+        }
+        if (metadata.categories) {
+            metaInfo += ` | Category: ${metadata.categories}`;
+        }
+        if (metadata.tags && Array.isArray(metadata.tags)) {
+            metaInfo += ` | Tags: ${metadata.tags.join(', ')}`;
+        }
+        metaEl.textContent = metaInfo;
+        
+        // 解析并渲染 Markdown 内容
+        let html = parseMarkdown(markdownContent);
+
+        if (metadata.error) {
+            html = `<div class="error">${metadata.error}</div>` + html;
+        }
+
         content.innerHTML = html || '<p><em>(empty file)</em></p>';
     }catch(err){
         content.innerHTML = `<div class="error">无法加载 <strong>${mdFile}</strong>：${escapeHTML(err.message)}</div>`;
