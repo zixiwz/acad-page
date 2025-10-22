@@ -6,7 +6,8 @@
     const jsFiles = [
         'js/toast.js',
         'js/load-nav.js', 
-        'js/lang-switcher.js'
+        'js/lang-switcher.js',
+        'js/load-footer.js'
     ];
     
     // 页面特定的JS文件

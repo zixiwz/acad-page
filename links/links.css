@@ -1,9 +1,16 @@
-.page.links-page {
+.links-page{
     display: flex;
     min-height: 80vh;
     flex-wrap: wrap;
     
 }
+/* .cv-page object {
+    width: 100%;
+    flex: 1;
+    height: 80vh;
+    display: flex;
+    margin: 3vh auto 2vh auto;
+} */
 
 .links-page .left-panel {
     width: 40%;
