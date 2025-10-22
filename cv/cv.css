@@ -1,7 +1,16 @@
-.cv-page object {
-    width: 100%;
-    flex: 1;
+.cv-page {
     height: 80vh;
     display: flex;
-    margin: 3vh auto 2vh auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+}
+
+.cv-page object {
+    padding: 0px 0;
+    width: 100%;
+    height: calc(100% - 0px);
+    display: block;
+    margin: 0 auto;
+    border: none;
 }

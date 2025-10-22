@@ -1,8 +1,10 @@
 .links-page{
     display: flex;
-    min-height: 80vh;
+    height: 80vh;
     flex-wrap: wrap;
-    
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 /* .cv-page object {
     width: 100%;
@@ -15,6 +17,7 @@
 .links-page .left-panel {
     width: 40%;
     padding: 40px;
+    overflow: hidden;
 }
 
 .links-page .right-panel {
@@ -97,11 +100,13 @@
 }
 
 .links-page #web-display {
--webkit-transform: scale(0.5);
+    -webkit-transform: scale(0.5);
     transform: scale(0.5);
     transform-origin: 0 0;
     width: 200%;
-    height: 140%;
+    height: 200%;
+    border: none;
+    overflow: hidden;
 }
 
 @media (max-width: 768px) {
