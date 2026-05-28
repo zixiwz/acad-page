@@ -2,6 +2,7 @@
 setlocal
 
 cd /d "%~dp0"
+set "SITE_DIR=%CD%\docs"
 if not defined PORT set "PORT=8000"
 
 where py >nul 2>nul
@@ -35,9 +36,10 @@ if not defined PORT (
 
 set "URL=http://localhost:%PORT%/"
 echo Starting local preview at %URL%
+echo Serving %SITE_DIR%
 echo Close this window to stop the server.
 start "" powershell -NoProfile -WindowStyle Hidden -Command "Start-Sleep -Milliseconds 700; Start-Process '%URL%'"
-%PYTHON% -m http.server %PORT%
+%PYTHON% -m http.server %PORT% --directory "%SITE_DIR%"
 
 echo.
 echo Server stopped.

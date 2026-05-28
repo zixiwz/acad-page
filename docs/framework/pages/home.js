@@ -1,0 +1,106 @@
+(function renderHome() {
+	const data = window.SITE_DATA;
+	const root = document.getElementById("home-root");
+	if (!data || !root) return;
+
+	function externalAttrs(href) {
+		return href.startsWith("http") ? ' target="_blank" rel="noopener noreferrer"' : "";
+	}
+
+	function renderLinks(links) {
+		return links.map((link) => `
+			<a href="${link.href}"${externalAttrs(link.href)} title="${link.label}">
+				<i class="${link.icon}"></i>${link.label}
+			</a>
+		`).join("");
+	}
+
+	function renderActionLinks(links = []) {
+		return links.map((link) => `<a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.label}</a>`).join("");
+	}
+
+	function renderTags(tags = []) {
+		return tags.map((tag) => `<span>${tag}</span>`).join("");
+	}
+
+	function renderPaperList(items) {
+		return items.map((item) => `
+			<li>
+				<div class="paper-thumb">
+					<i class="${item.icon}"></i>
+				</div>
+				<div class="paper-body">
+					<h3>${item.title}</h3>
+					${item.highlight ? `<p><strong>Highlight:</strong> ${item.highlight}</p>` : ""}
+					${item.venue ? `<p><em>${item.venue}</em></p>` : ""}
+					<div class="actions">${renderActionLinks(item.links)}</div>
+					<div class="tags">${renderTags(item.tags)}</div>
+				</div>
+			</li>
+		`).join("");
+	}
+
+	root.innerHTML = `
+		<section class="profile-card">
+			<div class="profile-copy">
+				<div class="eyebrow">${data.profile.role}</div>
+				<div class="info">
+					<h1>${data.profile.name}</h1>
+					<p class="lead">${data.profile.lead}</p>
+					<p class="affiliation">${data.profile.affiliation}</p>
+					<p class="bio">${data.profile.bio}</p>
+				</div>
+				<div class="contact-links">
+					${renderLinks(data.profile.links)}
+				</div>
+			</div>
+			<div class="portrait-wrap">
+				<img src="${data.profile.avatar}" alt="${data.profile.name}" class="avatar" />
+			</div>
+		</section>
+
+		<section class="content-card">
+			<div class="section-header">
+				<h2>Selected Publications</h2>
+			</div>
+			<ul class="paper-list">
+				${renderPaperList(data.selectedPublications)}
+			</ul>
+		</section>
+
+		<section class="content-card">
+			<div class="section-header">
+				<h2>Education & Experience</h2>
+			</div>
+			<ul class="timeline-list">
+				${data.educationExperience.map((item) => `
+					<li>
+						<div>
+							<h3>${item.title}</h3>
+							<p>${item.subtitle}</p>
+						</div>
+						<span>${item.period}</span>
+					</li>
+				`).join("")}
+			</ul>
+		</section>
+
+		<section class="content-card">
+			<div class="section-header">
+				<h2>Projects</h2>
+			</div>
+			<ul class="project-list">
+				${data.projects.map((project) => `
+					<li>
+						<div class="project-body">
+							<h3>${project.title}</h3>
+							<p>${project.description}</p>
+							<div class="actions">${renderActionLinks(project.links)}</div>
+							<div class="tags">${renderTags(project.tags)}</div>
+						</div>
+					</li>
+				`).join("")}
+			</ul>
+		</section>
+	`;
+})();

@@ -1,0 +1,111 @@
+.publications-page {
+	max-width: 1180px;
+	padding: 8px 32px 36px;
+}
+
+.publications-page .container {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.publication-section {
+	margin-top: 20px;
+	padding: 28px 40px 32px;
+	background: var(--color-bg-card);
+	border: 1px solid var(--color-border);
+	border-radius: 28px;
+	box-shadow: 0 22px 60px var(--color-shadow);
+}
+
+.publication-section:first-child {
+	margin-top: 0;
+}
+
+.publication-section .section-header {
+	border-bottom: 1px solid var(--color-border);
+	margin-bottom: 18px;
+	padding-bottom: 14px;
+}
+
+.publication-section h2 {
+	color: var(--color-title);
+	font-size: 1.5rem;
+	line-height: 1.2;
+}
+
+.publications-page ol {
+	list-style: none;
+	counter-reset: publication-counter;
+	padding-left: 0;
+	margin: 0;
+}
+
+.publications-page ol li {
+	counter-increment: publication-counter;
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	padding: 18px 0;
+	border-bottom: 1px solid var(--color-border);
+}
+
+.publications-page ol li:last-child {
+	border-bottom: 0;
+	padding-bottom: 0;
+}
+
+.publications-page ol li::before {
+	content: counter(publication-counter);
+	display: inline-grid;
+	place-items: center;
+	flex: 0 0 28px;
+	width: 28px;
+	height: 28px;
+	border-radius: 999px;
+	background: rgba(9, 105, 218, 0.08);
+	color: var(--color-accent);
+	font-size: 0.82rem;
+	font-weight: 700;
+}
+
+.publications-page ol li p {
+	margin: 0;
+	color: var(--color-text-secondary);
+	font-size: 0.94rem;
+	line-height: 1.65;
+}
+
+.publications-page strong {
+	color: var(--color-text-primary);
+	font-size: 0.98rem;
+}
+
+.publications-page a {
+	color: var(--color-accent);
+	text-decoration: none;
+}
+
+.publications-page a:hover {
+	text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+	.publications-page {
+		padding: 8px 18px 28px;
+	}
+
+	.publication-section {
+		padding: 30px;
+	}
+}
+
+@media (max-width: 620px) {
+	.publications-page {
+		padding: 8px 12px 24px;
+	}
+
+	.publication-section {
+		border-radius: 22px;
+		padding: 22px 18px;
+	}
+}

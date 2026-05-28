@@ -150,7 +150,8 @@
 }
 
 .timeline-list,
-.paper-list {
+.paper-list,
+.project-list {
 	list-style: none;
 }
 
@@ -163,7 +164,8 @@
 }
 
 .timeline-list li:last-child,
-.paper-list li:last-child {
+.paper-list li:last-child,
+.project-list li:last-child {
 	border-bottom: 0;
 	padding-bottom: 0;
 }
@@ -173,6 +175,24 @@
 	color: var(--color-text-primary);
 	font-size: 0.98rem;
 	line-height: 1.42;
+}
+
+.project-list li {
+	padding: 20px 0;
+	border-bottom: 1px solid var(--color-border);
+}
+
+.project-body h3 {
+	color: var(--color-text-primary);
+	font-size: 0.98rem;
+	line-height: 1.42;
+}
+
+.project-body p {
+	margin-top: 8px;
+	color: var(--color-text-secondary);
+	font-size: 0.94rem;
+	line-height: 1.65;
 }
 
 .timeline-list p {
