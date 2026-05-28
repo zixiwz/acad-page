@@ -23,11 +23,18 @@
 		return tags.map((tag) => `<span>${tag}</span>`).join("");
 	}
 
+	function renderAwardChips(items = []) {
+		return items.map((item) => `<span>${item}</span>`).join("");
+	}
+
 	function renderPaperList(items) {
 		return items.map((item) => `
 			<li>
 				<div class="paper-thumb">
-					<i class="${item.icon}"></i>
+					${item.image
+						? `<img src="${item.image}" alt="${item.title}" loading="lazy">`
+						: `<i class="${item.icon}"></i>`
+					}
 				</div>
 				<div class="paper-body">
 					<h3>${item.title}</h3>
@@ -75,14 +82,31 @@
 			<ul class="timeline-list">
 				${data.educationExperience.map((item) => `
 					<li>
-						<div>
-							<h3>${item.title}</h3>
-							<p>${item.subtitle}</p>
+						<div class="timeline-logo">
+							<img src="${item.logo}" alt="${item.title} logo" loading="lazy">
 						</div>
-						<span>${item.period}</span>
+						<div class="timeline-body">
+							<span>${item.period}</span>
+							<h3>${item.title}, ${item.subtitle}</h3>
+						</div>
 					</li>
 				`).join("")}
 			</ul>
+		</section>
+
+		<section class="content-card">
+			<div class="section-header">
+				<h2>Selected Awards</h2>
+			</div>
+			<div class="award-chips">
+				${renderAwardChips(data.selectedAwards.primary)}
+			</div>
+			<details class="award-details">
+				<summary>See more awards</summary>
+				<div class="award-chips">
+					${renderAwardChips(data.selectedAwards.more)}
+				</div>
+			</details>
 		</section>
 
 		<section class="content-card">
@@ -94,6 +118,7 @@
 					<li>
 						<div class="project-body">
 							<h3>${project.title}</h3>
+							${project.subtitle ? `<div class="project-meta">${project.subtitle}</div>` : ""}
 							<p>${project.description}</p>
 							<div class="actions">${renderActionLinks(project.links)}</div>
 							<div class="tags">${renderTags(project.tags)}</div>

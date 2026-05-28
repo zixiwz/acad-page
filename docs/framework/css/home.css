@@ -1,12 +1,11 @@
 .home-page {
 	max-width: 1180px;
-	padding: 8px 32px 36px;
+	padding: 18px 32px 36px;
 }
 
 .profile-card,
 .content-card {
 	background: var(--color-bg-card);
-	border: 1px solid var(--color-border);
 	border-radius: 28px;
 	box-shadow: 0 22px 60px var(--color-shadow);
 }
@@ -156,10 +155,11 @@
 }
 
 .timeline-list li {
-	display: flex;
-	gap: 22px;
-	justify-content: space-between;
-	padding: 18px 0;
+	display: grid;
+	grid-template-columns: 38px minmax(0, 1fr);
+	gap: 14px;
+	align-items: start;
+	padding: 14px 0;
 	border-bottom: 1px solid var(--color-border);
 }
 
@@ -170,11 +170,44 @@
 	padding-bottom: 0;
 }
 
+.timeline-logo {
+	display: grid;
+	place-items: center;
+	width: 34px;
+	height: 34px;
+	border-radius: 50%;
+	background: var(--color-bg-card);
+	box-shadow: 0 2px 10px rgba(20, 36, 64, 0.12);
+}
+
+.timeline-logo img {
+	display: block;
+	width: 26px;
+	height: 26px;
+	object-fit: contain;
+}
+
+.timeline-body {
+	min-width: 0;
+}
+
+.timeline-body span {
+	display: block;
+	margin-bottom: 4px;
+	color: var(--color-text-secondary);
+	font-size: 0.88rem;
+	line-height: 1.2;
+}
+
 .timeline-list h3,
 .paper-body h3 {
 	color: var(--color-text-primary);
 	font-size: 0.98rem;
 	line-height: 1.42;
+}
+
+.timeline-list h3 {
+	font-weight: 800;
 }
 
 .project-list li {
@@ -188,24 +221,19 @@
 	line-height: 1.42;
 }
 
+.project-meta {
+	margin-top: 3px;
+	color: var(--color-text-secondary);
+	font-size: 0.88rem;
+	font-weight: 600;
+	line-height: 1.45;
+}
+
 .project-body p {
 	margin-top: 8px;
 	color: var(--color-text-secondary);
 	font-size: 0.94rem;
 	line-height: 1.65;
-}
-
-.timeline-list p {
-	margin-top: 5px;
-	line-height: 1.5;
-}
-
-.timeline-list span {
-	flex: 0 0 auto;
-	margin-top: 2px;
-	color: var(--color-text-secondary);
-	font-size: 0.88rem;
-	white-space: nowrap;
 }
 
 .paper-list li {
@@ -232,6 +260,15 @@
 	font-size: 2.35rem;
 }
 
+.paper-thumb img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-radius: inherit;
+	object-fit: contain;
+	background: #fff;
+}
+
 .paper-body p {
 	margin-top: 8px;
 	font-size: 0.94rem;
@@ -247,6 +284,40 @@
 	flex-wrap: wrap;
 	gap: 8px;
 	margin-top: 12px;
+}
+
+.award-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.award-chips span {
+	display: inline-flex;
+	align-items: center;
+	min-height: 34px;
+	padding: 0 14px;
+	border-radius: 999px;
+	background: var(--color-bg-chip);
+	color: var(--color-text-primary);
+	font-size: 0.88rem;
+	line-height: 1.35;
+}
+
+.award-details {
+	margin-top: 14px;
+}
+
+.award-details summary {
+	width: fit-content;
+	color: var(--color-accent);
+	font-size: 0.92rem;
+	line-height: 1.4;
+	cursor: pointer;
+}
+
+.award-details .award-chips {
+	margin-top: 14px;
 }
 
 .tags {
@@ -269,7 +340,7 @@
 
 @media (max-width: 900px) {
 	.home-page {
-		padding: 8px 18px 28px;
+		padding: 16px 18px 28px;
 	}
 
 	.profile-card {
@@ -294,7 +365,7 @@
 
 @media (max-width: 620px) {
 	.home-page {
-		padding: 8px 12px 24px;
+		padding: 14px 12px 24px;
 	}
 
 	.profile-card,
@@ -322,12 +393,18 @@
 	}
 
 	.timeline-list li {
-		display: block;
+		grid-template-columns: 34px minmax(0, 1fr);
+		gap: 12px;
 	}
 
-	.timeline-list span {
-		display: block;
-		margin-top: 10px;
+	.timeline-logo {
+		width: 30px;
+		height: 30px;
+	}
+
+	.timeline-logo img {
+		width: 23px;
+		height: 23px;
 	}
 
 	.section-header h2 {

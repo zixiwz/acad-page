@@ -1,6 +1,6 @@
 .publications-page {
 	max-width: 1180px;
-	padding: 8px 32px 36px;
+	padding: 18px 32px 36px;
 }
 
 .publications-page .container {
@@ -12,7 +12,6 @@
 	margin-top: 20px;
 	padding: 28px 40px 32px;
 	background: var(--color-bg-card);
-	border: 1px solid var(--color-border);
 	border-radius: 28px;
 	box-shadow: 0 22px 60px var(--color-shadow);
 }
@@ -89,9 +88,32 @@
 	text-decoration: underline;
 }
 
+.publication-legend {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	margin: 14px 0 0 4px;
+	color: var(--color-text-secondary);
+	font-size: 0.84rem;
+	white-space: nowrap;
+}
+
+.corresponding-author {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	color: var(--color-text-secondary);
+	fill: none;
+	stroke: currentColor;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-width: 2;
+	vertical-align: -0.12em;
+}
+
 @media (max-width: 900px) {
 	.publications-page {
-		padding: 8px 18px 28px;
+		padding: 16px 18px 28px;
 	}
 
 	.publication-section {
@@ -101,7 +123,7 @@
 
 @media (max-width: 620px) {
 	.publications-page {
-		padding: 8px 12px 24px;
+		padding: 14px 12px 24px;
 	}
 
 	.publication-section {
