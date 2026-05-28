@@ -6,7 +6,6 @@
     const jsFiles = [
         'js/toast.js',
         'js/load-nav.js', 
-        'js/lang-switcher.js',
         'js/load-footer.js'
     ];
     

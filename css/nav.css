@@ -1,10 +1,9 @@
 .navbar {
 	position: sticky;
 	top: 0;
-	z-index: 1;
-	background-color: var(--color-bg-nav);
-	padding: 0.5rem 5%;
-	border-bottom: 1px solid var(--color-border);
+	z-index: 10;
+	background: transparent;
+	padding: 26px max(32px, calc((100% - 1180px) / 2 + 32px)) 4px;
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
@@ -17,53 +16,26 @@
 	list-style: none;
 }
 
+.nav-brand {
+	margin-right: auto;
+	color: var(--color-text-primary) !important;
+	font-size: 0.88rem;
+	font-weight: 800 !important;
+}
+
 .navbar a {
 	text-decoration: none;
-	color: var(--color-text-primary);
+	color: var(--color-text-secondary);
+	font-size: 0.92rem;
 	font-weight: 500;
-	padding: 0.3rem 0.6rem;
-	border-radius: 4px;
-	transition: all 0.3s ease;
+	padding: 0;
+	border-radius: 0;
+	transition: color 0.2s ease;
 }
 
 .navbar a:hover,
 .navbar a.active {
-	background-color: var(--color-accent);
-	color: var(--color-bg-card);
-}
-
-.lang-switcher {
-    cursor: pointer;
-	margin-left: auto; 
-    padding: 5px 10px;
-    border-radius: 3px;
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) ,
-        background-color 0.3s ease;
-}
-
-.lang-switcher:hover {
-	-webkit-transform: scale(0.9);
-	transform: scale(0.9);
-}
-
-.lang-switcher:active {
-	-webkit-transform: scale(0.9) rotate(5deg);
-	transform: scale(0.9) rotate(5deg);
-}
-
-.en-label,
-.zh-label {
-	transition: color 0.3s ease;
-}
-
-.en-label.active,
-.zh-label.active {
 	color: var(--color-accent);
-}
-
-.cn-version.hide,
-.en-version.hide {
-	display: none;
 }
 
 #menu-icon {
@@ -75,13 +47,9 @@
 }
 
 
-#lang-switcher-mini {
-	display: none;
-}
-
 @media (max-width: 768px) {
 	.navbar {
-		padding: 10px 3%;
+		padding: 18px 18px 4px;
 	}
 
 	.nav-links{
@@ -89,12 +57,13 @@
 	}
 
 	.navbar a {
-		padding: 3px 6px;
 		font-size: 0.9em;
 	}
-	.lang-switcher {
-		padding: 3px 6px;
-		font-size: 0.9em;
+}
+
+@media (max-width: 620px) {
+	.navbar {
+		padding: 18px 12px 4px;
 	}
 }
 
@@ -103,35 +72,21 @@
 		gap: 5px;
 	}
 	.navbar a {
-		padding: 2px 4px;
 		font-size: 0.8em;
-	}
-	#lang-switcher-mini {
-		display: block;
-		font-size: 0.8em;
-	}
-	#lang-switcher {
-		display: none;
 	}
 	#menu-icon {
 		display: block;
 	}
+	.nav-brand {
+		margin-left: 6px;
+	}
 	.nav-links {
 		display: none;
+		order: 3;
+		width: 100%;
+		margin-top: 8px;
 	}
 	.nav-links.active {
 		display: flex;
-	}
-
-}
-
-@media (hover: none) {
-    .lang-switcher:hover {
-		-webkit-transform: none;
-		transform: none;
-	}
-	.lang-switcher:active {
-		-webkit-transform: scale(0.9) rotate(5deg);
-		transform: scale(0.9) rotate(5deg);
 	}
 }
