@@ -9,7 +9,7 @@
 		document.body.prepend(placeholder);
 	}
 
-	const brand = data.profile?.displayName || "Home";
+	const brand = data.profile?.name || "Home";
 	const links = data.navigation || [];
 
 	placeholder.innerHTML = `<nav class="navbar">

@@ -87,7 +87,7 @@
 		<section class="profile-card">
 			<div class="profile-copy">
 				<div class="info">
-					<h1>${data.profile.name}</h1>
+					<h1>${data.profile.displayName || data.profile.name}</h1>
 					<p class="lead">${data.profile.lead}</p>
 					<p class="affiliation">${data.profile.affiliation}</p>
 					<p class="bio">${data.profile.bio}</p>
