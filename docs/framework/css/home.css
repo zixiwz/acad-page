@@ -42,7 +42,7 @@
 .info h1 {
 	margin-bottom: 12px;
 	color: var(--color-title);
-	font-size: clamp(2.15rem, 4.5vw, 3.45rem);
+	font-size: 3rem;
 	line-height: 0.96;
 	letter-spacing: 0;
 }
@@ -149,8 +149,7 @@
 }
 
 .timeline-list,
-.paper-list,
-.project-list {
+.paper-list {
 	list-style: none;
 }
 
@@ -164,8 +163,7 @@
 }
 
 .timeline-list li:last-child,
-.paper-list li:last-child,
-.project-list li:last-child {
+.paper-list li:last-child {
 	border-bottom: 0;
 	padding-bottom: 0;
 }
@@ -210,30 +208,49 @@
 	font-weight: 800;
 }
 
-.project-list li {
-	padding: 20px 0;
-	border-bottom: 1px solid var(--color-border);
+.project-list {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 16px;
+	list-style: none;
 }
 
-.project-body h3 {
+.project-card {
+	min-width: 0;
+	padding: 22px 20px;
+	border: 1px solid var(--color-border);
+	border-radius: 18px;
+	background: var(--color-bg-card);
+	box-shadow: 0 12px 34px rgba(20, 36, 64, 0.07);
+}
+
+.project-card h3 {
 	color: var(--color-text-primary);
 	font-size: 0.98rem;
 	line-height: 1.42;
 }
 
-.project-meta {
-	margin-top: 3px;
+.project-card p {
+	margin-top: 10px;
 	color: var(--color-text-secondary);
-	font-size: 0.88rem;
-	font-weight: 600;
-	line-height: 1.45;
+	font-size: 0.9rem;
+	line-height: 1.6;
 }
 
-.project-body p {
-	margin-top: 8px;
+.project-details {
+	margin-top: 16px;
+}
+
+.project-details summary {
+	width: fit-content;
 	color: var(--color-text-secondary);
-	font-size: 0.94rem;
-	line-height: 1.65;
+	font-size: 0.92rem;
+	line-height: 1.4;
+	cursor: pointer;
+}
+
+.project-list-more {
+	margin-top: 14px;
 }
 
 .paper-list li {
@@ -349,8 +366,12 @@
 		padding: 30px;
 	}
 
+	.info h1 {
+		font-size: 2.6rem;
+	}
+
 	.portrait-wrap {
-		justify-self: start;
+		justify-self: center;
 	}
 
 	.paper-list li {
@@ -359,7 +380,12 @@
 	}
 
 	.paper-thumb {
+		justify-self: center;
 		max-width: 360px;
+	}
+
+	.project-list {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 }
 
@@ -379,7 +405,7 @@
 	}
 
 	.info h1 {
-		font-size: 2.35rem;
+		font-size: 2.25rem;
 	}
 
 	.lead {
@@ -405,6 +431,10 @@
 	.timeline-logo img {
 		width: 23px;
 		height: 23px;
+	}
+
+	.project-list {
+		grid-template-columns: 1fr;
 	}
 
 	.section-header h2 {

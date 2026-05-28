@@ -18,9 +18,6 @@
 	}
 
 	placeholder.innerHTML = `<footer>
-		<p>&copy; ${footer.year} ${footer.owner} &nbsp;
-			<a href="${footer.icpUrl}" target="_blank" rel="noopener noreferrer">${footer.icp}</a> &nbsp;
-			<a href="${footer.policeUrl}" target="_blank" rel="noopener noreferrer">${footer.police}</a>
-		</p>
+		<p>&copy; ${footer.year} ${footer.owner} · Last updated: ${footer.lastUpdated}</p>
 	</footer>`;
 })();

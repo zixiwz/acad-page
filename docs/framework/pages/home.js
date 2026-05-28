@@ -47,6 +47,19 @@
 		`).join("");
 	}
 
+	function renderProjectCards(items) {
+		return items.map((project) => `
+			<li class="project-card">
+				<h3>${project.title}</h3>
+				<p>${project.description}</p>
+				<div class="actions">${renderActionLinks(project.links)}</div>
+			</li>
+		`).join("");
+	}
+
+	const featuredProjects = data.projects.filter((project) => project.featured);
+	const moreProjects = data.projects.filter((project) => !project.featured);
+
 	root.innerHTML = `
 		<section class="profile-card">
 			<div class="profile-copy">
@@ -114,18 +127,16 @@
 				<h2>Projects</h2>
 			</div>
 			<ul class="project-list">
-				${data.projects.map((project) => `
-					<li>
-						<div class="project-body">
-							<h3>${project.title}</h3>
-							${project.subtitle ? `<div class="project-meta">${project.subtitle}</div>` : ""}
-							<p>${project.description}</p>
-							<div class="actions">${renderActionLinks(project.links)}</div>
-							<div class="tags">${renderTags(project.tags)}</div>
-						</div>
-					</li>
-				`).join("")}
+				${renderProjectCards(featuredProjects)}
 			</ul>
+			${moreProjects.length ? `
+				<details class="project-details">
+					<summary>See more projects</summary>
+					<ul class="project-list project-list-more">
+						${renderProjectCards(moreProjects)}
+					</ul>
+				</details>
+			` : ""}
 		</section>
 	`;
 })();

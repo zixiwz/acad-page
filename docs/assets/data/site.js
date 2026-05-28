@@ -4,7 +4,7 @@ window.SITE_DATA = {
 		name: "Zixi Wang",
 		displayName: "Zixi Wang",
 		role: "Graduate Student · Software Engineering",
-		lead: "MS student, School of Information and Software Engineering",
+		lead: "MS student in Software Engineering",
 		affiliation: "University of Electronic Science and Technology of China",
 		bio: "I am interested in machine learning, gradual domain adaptation, and robust visual perception. My recent work explores how to transfer knowledge across continuously changing domains with stable training strategies.",
 		avatar: "/assets/images/avatar.jpg",
@@ -61,28 +61,31 @@ window.SITE_DATA = {
 		{
 			title: "AiTeachMe",
 			subtitle: "Data-driven AI learning system",
-			description: "Built a personal learning workspace that connects material parsing, learning plans, knowledge documents and graphs, reading-assistant Q&A, diagnostic assessment, and learner profiling. The backend organizes workflows, LLM/RAG, vector retrieval, and local/cloud storage around Course-level boundaries.",
+			description: "A personal AI learning workspace for material parsing, study planning, knowledge maps, companion Q&A, and learner profiling.",
+			featured: true,
 			links: [{ label: "Website", href: "https://aiteachme.cn/" }],
 			tags: ["React", "FastAPI", "LangGraph"]
 		},
 		{
 			title: "Idea2PaperLab",
 			subtitle: "Research automation agent system",
-			description: "Developed a research loop from idea refinement, literature expansion, dataset analysis, code generation and revision, experiment execution, and result analysis to LaTeX drafting and self-review. Designed project state, run history, tool invocation, evidence tracking, and the desktop workspace.",
+			description: "An agent workspace for idea refinement, literature expansion, experiment execution, result analysis, and LaTeX drafting.",
+			featured: true,
 			links: [{ label: "Website", href: "https://9fields.cn/idea2paperlab.html" }],
 			tags: ["FastAPI", "Electron", "React"]
 		},
 		{
 			title: "FluxHive",
 			subtitle: "Edge-cloud GPU task scheduling platform",
-			description: "Designed a three-part collaboration architecture across Agent, Control Server, and Web Client, supporting GPU-memory-aware scheduling, heartbeat registration, task dispatch, streaming logs, RBAC/auditing, and a real-time monitoring control plane.",
+			description: "An edge-cloud GPU scheduling platform with memory-aware dispatch, streaming logs, RBAC, auditing, and realtime monitoring.",
+			featured: true,
 			links: [{ label: "Website", href: "https://fluxhive.cn/" }],
 			tags: ["FastAPI", "WebSocket", "React"]
 		},
 		{
 			title: "FlowLine",
 			subtitle: "GPU resource manager and scheduler · 400 stars",
-			description: "Built a GPU resource management and concurrent task scheduling tool with memory-aware scheduling, task queues, failure retry, and web monitoring.",
+			description: "A GPU resource manager and concurrent task scheduler with queues, retries, and web monitoring.",
 			links: [{ label: "GitHub", href: "https://github.com/Dramwig/FlowLine" }],
 			tags: ["GPU scheduling", "Task queue", "Web monitoring"]
 		}
@@ -158,6 +161,7 @@ window.SITE_DATA = {
 	footer: {
 		year: "2025",
 		owner: "Zixi Wang",
+		lastUpdated: "May 28, 2026",
 		icp: "蜀ICP备2025125007号-1",
 		icpUrl: "https://beian.miit.gov.cn/",
 		police: "川公网安备51012402001433号",
