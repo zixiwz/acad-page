@@ -13,6 +13,7 @@ window.SITE_DATA = {
 			{ label: "Email", href: "mailto:zixi-wang@outlook.com", icon: "fa-solid fa-envelope" },
 			{ label: "Blog", href: "https://blog.wangzixi.top", icon: "fa fa-blog" },
 			{ label: "GitHub", href: "https://github.com/dramwig", icon: "fa-brands fa-github" },
+			{ label: "CV", href: "/cv/", icon: "fa-solid fa-file-lines" },
 			{ label: "ORCID", href: "https://orcid.org/0009-0009-4979-4562", icon: "fa-brands fa-orcid" },
 			{ label: "Zhihu", href: "https://www.zhihu.com/people/feng-qing-51-31", icon: "fa-brands fa-zhihu" },
 			{ label: "OpenReview", href: "https://openreview.net/profile?id=~Zixi_Wang2", icon: "fa fa-book-reader" },

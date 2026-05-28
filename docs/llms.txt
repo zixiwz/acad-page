@@ -1,0 +1,21 @@
+# Zixi Wang
+
+Zixi Wang is an M.Eng. student in Software Engineering at the University of Electronic Science and Technology of China.
+
+Research interests include machine learning, gradual domain adaptation, robust visual perception, and software engineering.
+
+## Key Pages
+
+- Homepage: https://acad.wangzixi.top/
+- Publications: https://acad.wangzixi.top/publications/
+- CV: https://acad.wangzixi.top/cv/
+- GitHub: https://github.com/dramwig
+- Google Scholar: https://scholar.google.com/citations?user=KL1uqx4AAAAJ
+- ORCID: https://orcid.org/0009-0009-4979-4562
+- OpenReview: https://openreview.net/profile?id=~Zixi_Wang2
+
+## Selected Publications
+
+- Self-Training with Dynamic Weighting for Robust Gradual Domain Adaptation. NeurIPS 2025. https://arxiv.org/abs/2510.13864
+- Multi-Modal Gradual Domain Osmosis: Stepwise Dynamic Learning with Batch Matching for Gradual Domain Adaptation. ACM Multimedia 2025. https://dl.acm.org/doi/10.1145/3746027.3755817
+- SWAT: Sliding Window Adversarial Training for Gradual Domain Adaptation. https://arxiv.org/abs/2501.19155

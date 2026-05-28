@@ -15,6 +15,29 @@
 		`).join("");
 	}
 
+	function renderProfileLinks(links) {
+		const primaryLabels = new Set(["Email", "GitHub", "Google Scholar", "CV"]);
+		const primaryLinks = links.filter((link) => primaryLabels.has(link.label));
+		const moreLinks = links.filter((link) => !primaryLabels.has(link.label));
+		return `
+			<div class="contact-links">
+				${renderLinks(primaryLinks)}
+				${moreLinks.length ? `
+					<details class="contact-more">
+						<summary title="More links" aria-label="More links">
+							<svg viewBox="0 0 24 24" aria-hidden="true">
+								<path d="m6 9 6 6 6-6"></path>
+							</svg>
+						</summary>
+						<div class="contact-links contact-links-more">
+							${renderLinks(moreLinks)}
+						</div>
+					</details>
+				` : ""}
+			</div>
+		`;
+	}
+
 	function renderActionLinks(links = []) {
 		return links.map((link) => `<a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.label}</a>`).join("");
 	}
@@ -38,7 +61,7 @@
 				</div>
 				<div class="paper-body">
 					<h3>${item.title}</h3>
-					${item.highlight ? `<p><strong>Highlight:</strong> ${item.highlight}</p>` : ""}
+					${item.highlight ? `<p><strong>TL;DR:</strong> ${item.highlight}</p>` : ""}
 					${item.venue ? `<p><em>${item.venue}</em></p>` : ""}
 					<div class="actions">${renderActionLinks(item.links)}</div>
 					<div class="tags">${renderTags(item.tags)}</div>
@@ -63,16 +86,13 @@
 	root.innerHTML = `
 		<section class="profile-card">
 			<div class="profile-copy">
-				<div class="eyebrow">${data.profile.role}</div>
 				<div class="info">
 					<h1>${data.profile.name}</h1>
 					<p class="lead">${data.profile.lead}</p>
 					<p class="affiliation">${data.profile.affiliation}</p>
 					<p class="bio">${data.profile.bio}</p>
 				</div>
-				<div class="contact-links">
-					${renderLinks(data.profile.links)}
-				</div>
+				${renderProfileLinks(data.profile.links)}
 			</div>
 			<div class="portrait-wrap">
 				<img src="${data.profile.avatar}" alt="${data.profile.name}" class="avatar" />

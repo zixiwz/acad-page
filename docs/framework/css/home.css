@@ -103,6 +103,59 @@
 	margin-top: 24px;
 }
 
+.contact-more {
+	display: contents;
+}
+
+.contact-more summary {
+	display: inline-grid;
+	place-items: center;
+	flex: 0 0 34px;
+	width: 34px;
+	height: 34px;
+	border: 1px solid rgba(52, 152, 219, 0.28);
+	border-radius: 999px;
+	background: rgba(52, 152, 219, 0.06);
+	color: var(--color-accent);
+	cursor: pointer;
+	list-style: none;
+	transition: transform 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.contact-more summary::-webkit-details-marker {
+	display: none;
+}
+
+.contact-more summary:hover {
+	border-color: rgba(52, 152, 219, 0.52);
+	background: rgba(52, 152, 219, 0.12);
+	transform: translateY(-1px);
+}
+
+.contact-more summary svg {
+	width: 16px;
+	height: 16px;
+	fill: none;
+	stroke: currentColor;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-width: 2.3;
+	transition: transform 0.18s ease;
+}
+
+.contact-more[open] {
+	display: contents;
+}
+
+.contact-more[open] summary svg {
+	transform: rotate(180deg);
+}
+
+.contact-links-more {
+	flex-basis: 100%;
+	margin-top: 0;
+}
+
 .contact-links a,
 .actions a {
 	display: inline-flex;
